@@ -6,7 +6,7 @@ char* find_words(char* line, int length)
     char* f_words = NULL;
     f_words = (char*)malloc((strlen(line) + 1) * sizeof(char));
     int contain = 0;
-    char deleminators[] = " -,.!?\t/;:\n\0";
+    char deleminators[] = " -,.!?\t/;':\n\0";
     int cur_len = 0;
     int cursor = 0;
     for (int i = 0; i < strlen(line); ++i) {
@@ -56,7 +56,7 @@ char* find_words(char* line, int length)
 
 TEST(TestFunc, Auto_Test) {
     int kol = 0;
-    while (kol < 1000000) {
+    while (kol < 10000) {
         srand(time(NULL));
         int new_word;
         int rand_num;
@@ -95,9 +95,7 @@ TEST(TestFunc, Auto_Test) {
                 waited_cursor += 1;
             }
         }
-        //printf("%s", testline);
         ASSERT_STREQ(find_words(testline, length), waited);
-       
         kol += 1;
     }
 }
@@ -117,5 +115,5 @@ TEST(TestFunc, words_not_found) {
 
 TEST(TestFunc, different_determ) {
     char testline[] = " da dj  /daw ./ga/g.. a/s. .g e/a aw,a /wa/ ;'a' .a .g.ae d.wa'g  .es 'a.f. awd. dad' .aw daw a, .a. .. .a/. '";
-    ASSERT_STREQ(find_words(testline, 17), ""); //в строке нет слов из 7-ми символов
+    ASSERT_STREQ(find_words(testline, 1), "g a s g e a a a a g d g a f a a a "); 
 }

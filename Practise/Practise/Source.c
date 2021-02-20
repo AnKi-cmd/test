@@ -8,7 +8,7 @@ char* find_words(char* line, int length)
     char* f_words = NULL;
     f_words = (char*)malloc((strlen(line) + 1) * sizeof(char));
     int contain = 0;
-    char deleminators[] = " -,.!?\t/;:\n\0";
+    char deleminators[] = " -,.!'?\t/;:\n\0";
     int cur_len = 0;
     int cursor = 0;
     for (int i = 0; i < strlen(line); ++i) {
